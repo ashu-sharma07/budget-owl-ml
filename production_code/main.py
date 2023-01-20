@@ -44,6 +44,7 @@ def buget_monthly_predict(data:Survey):
     print(prediction)
     print(prediction[0])
     x = prediction[0]
+    x = x*20
     print(type(x))
     return {
         'prediction' : int(x)
