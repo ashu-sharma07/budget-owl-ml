@@ -15,8 +15,8 @@ jobs:
       #   with:
       #     python-version: '3.x'
       - uses: iterative/setup-cml@v1
-      - name: Train model
+      - name: Run API
         run: |
           # Your ML workflow goes here
-          pip install -r requirements.txt
-          python main.py
+          pip install -r production_code/requirements.txt
+          python production_code/main.py
