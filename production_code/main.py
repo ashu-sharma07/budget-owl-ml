@@ -39,13 +39,12 @@ def buget_monthly_predict(data:Survey):
     input_pd = pd.DataFrame([[gender, age, study_year, living, scholarship, part_time_job, transporting, smoking, drinks, games_hobbies, cosmetics_care, monthly_subs]], columns=['Gender', 'Age', 'Study_year', 'Living', 'Scholarship', 'Part_time_job',
        'Transporting', 'Smoking', 'Drinks', 'Games_Hobbies',
        'Cosmetics_Self_Care', 'Monthly_Subscription'])
-    print(input_pd)
+
     prediction = model.predict(input_pd)
-    print(prediction)
-    print(prediction[0])
+
     x = prediction[0]
     x = x*20
-    print(type(x))
+
     return {
         'prediction' : int(x)
         }
