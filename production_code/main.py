@@ -5,13 +5,14 @@ import numpy as np
 import joblib
 import pandas as pd
 from core import Survey
+from core import Medical
 from fastapi.encoders import jsonable_encoder
 
 
 
 app = FastAPI()
 model = joblib.load('expense_pipe.joblib')
-
+model_2 = joblib.load('medical_expense_pipe.joblib')
 
 @app.get('/')
 def index():
@@ -44,6 +45,29 @@ def buget_monthly_predict(data:Survey):
 
     x = prediction[0]
     x = x*20
+
+    return {
+        'prediction' : int(x)
+        }
+    
+@app.post('/predict_medical')
+def medical_monthly_predict(data:Medical):
+    data = data.dict()
+    age = data['age']
+    sex = data['sex']
+    bmi = data['bmi']
+    child = data['children']
+    smoker = data['smoker']
+    region = data['region']
+    
+    # input_df = pd.DataFrame(jsonable_encoder(data))
+
+    
+    input_pd_1 = pd.DataFrame([[age, sex, bmi, child, smoker, region]], columns=['age', 'sex', 'bmi', 'children', 'smoker', 'region'])
+
+    prediction = model_2.predict(input_pd_1)
+
+    x = prediction[0]
 
     return {
         'prediction' : int(x)
