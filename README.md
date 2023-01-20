@@ -1,2 +1,2 @@
-# budget-owl-ml
-Budget Owl ML
+# spend-savvy-ml
+Spend Savvy ML
